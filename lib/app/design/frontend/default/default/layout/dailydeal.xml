@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * Webplanet
+ *
+ * @category    design_default
+ * @package     Webplanet_Dailydeal
+ * @author      Ken Golovin <ken@webplanet.co.nz>
+ */
+-->
+<layout version="0.1.0">
+    <default>
+    	<reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/dailydeal.css</name></action>
+        </reference>
+    </default>
+    
+    <dailydeal_deals_browse>
+      <reference name="root">
+        <action method="setTemplate"><template>page/1column.phtml</template></action>
+        <remove name="left" />
+      </reference>
+        <reference name="content">
+            <block type="dailydeal/deals" name="deals" template="dailydeal/browse.phtml">
+                <block type="dailydeal/deal_list" name="deal_list" template="dailydeal/deal/list.phtml">
+                    
+                </block>
+            </block>
+
+        </reference>
+
+
+        <reference name="left">
+            <!--block type="browseby/attribute_navigation" name="browseby.attribute.nav.manufacturer" after="catalog.leftnav" template="browseby/attribute/left.phtml">
+                <action method="setBrowseAttribute"><code>manufacturer</code></action>
+            </block-->
+
+        </reference>
+    </dailydeal_deals_browse>
+    
+</layout>

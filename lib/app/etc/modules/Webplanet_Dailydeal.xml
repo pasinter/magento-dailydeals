@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Webplanet_Dailydeal>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Webplanet_Dailydeal>
+    </modules>
+</config>

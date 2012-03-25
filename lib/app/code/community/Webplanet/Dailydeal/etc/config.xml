@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @author      Ken Golovin <ken@webplanet.co.nz>
+ */
+-->
+<config>
+    <modules>
+            <Webplanet_Dailydeal>
+                    <version>0.1.1</version>
+            </Webplanet_Dailydeal>
+    </modules>
+    <global>
+        <blocks>
+                <dailydeal>
+                        <class>Webplanet_Dailydeal_Block</class>
+                </dailydeal>
+        </blocks>
+        <helpers>
+                <dailydeal>
+                        <class>Webplanet_Dailydeal_Helper</class>
+                </dailydeal>
+        </helpers>
+
+
+        <models>
+            <dailydeal>
+                    <class>Webplanet_Dailydeal_Model</class>
+                    <resourceModel>dailydeal_mysql4</resourceModel>
+            </dailydeal>
+            <dailydeal_mysql4>
+                    <class>Webplanet_Dailydeal_Model_Mysql4</class>
+                    <entities>
+                            <deal><table>webplanet_dailydeal_deal</table></deal>
+                    </entities>
+            </dailydeal_mysql4>
+        </models>
+
+
+        <resources>
+            <dailydeal_setup>
+              <setup>
+                <module>Webplanet_Dailydeal</module>
+                <class>Webplanet_Dailydeal_Model_Resource_Eav_Mysql4_Setup</class>
+              </setup>
+
+              <connection>
+                <use>core_setup</use>
+              </connection>
+            </dailydeal_setup>
+
+            <dailydeal_write>
+              <connection>
+                <use>core_write</use>
+              </connection>
+            </dailydeal_write>
+            <dailydeal_read>
+              <connection>
+                <use>core_read</use>
+              </connection>
+            </dailydeal_read>
+        </resources>
+
+    </global>
+
+    <admin>
+        <routers>
+            <dailydeal>
+                    <use>admin</use>
+                    <args>
+                        <module>Webplanet_Dailydeal</module>
+                        <frontName>dailydeal</frontName>
+                    </args>
+            </dailydeal>
+        </routers>
+    </admin>
+
+
+    <frontend>
+        <routers>
+            <dailydeal>
+                <use>standard</use>
+                <args>
+                    <module>Webplanet_Dailydeal</module>
+                    <frontName>dailydeal</frontName>
+                </args>
+            </dailydeal>
+        </routers>
+
+        <events>
+           <catalog_product_collection_load_after>
+                <observers>
+                    <weblanet_dailydeal>
+                        <type>model</type>
+                        <class>Webplanet_Dailydeal_Model_Observer</class>
+                        <method>onCatalogProductCollectionLoadAfter</method>
+                    </weblanet_dailydeal>
+                </observers>
+            </catalog_product_collection_load_after>
+            
+            <sales_quote_add_item>
+                <observers>
+                    <weblanet_dailydeal>
+                        <type>model</type>
+                        <class>Webplanet_Dailydeal_Model_Observer</class>
+                        <method>onSalesQuoteAddItem</method>
+                    </weblanet_dailydeal>
+                </observers>
+            </sales_quote_add_item>
+            
+            
+            <sales_convert_quote_item_to_order_item>
+                <observers>
+                    <extra_options>
+                        <type>model</type>
+                        <class>Webplanet_Dailydeal_Model_Observer</class>
+                        <method>onSalesConvertQuoteItemToOrderItem</method>
+                    </extra_options>
+                </observers>
+            </sales_convert_quote_item_to_order_item>
+        </events>
+
+        <layout>
+          <updates module="Webplanet_Dailydeal">
+            <dailydeal>
+              <file>dailydeal.xml</file>
+            </dailydeal>
+          </updates>
+        </layout>
+    </frontend>
+
+
+    <adminhtml>
+        <menu>
+            <promo>
+                <children>
+                    <webplanet_dailydeal translate="title">
+                        <title>Webplanet Daily Deals</title>
+                        <sort_order>10</sort_order>
+                        <action>dailydeal/adminhtml_dailydeal</action>
+                    </webplanet_dailydeal>
+                </children>
+            </promo>
+        </menu>
+
+        <layout>
+            <updates>
+                <webppanet>
+                    <file>webppanet.xml</file>
+                </webppanet>
+            </updates>
+        </layout>
+
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <webppanet>
+                                            <title>Webplanet Daily Deals Configuration</title>
+                                            <sort_order>10</sort_order>
+                                        </webppanet>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+
+                        <promo>
+                            <children>
+                                <webplanet_dailydeal translate="title" module="dailydeal">
+                                    <title>Webplanet Daily Deals</title>
+                                </webplanet_dailydeal>
+                            </children>
+                        </promo>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    
+  
+    <default>
+        <catalog>
+            <dailydeal>
+                <url_prefix>daily-deals</url_prefix>
+            </dailydeal>
+        </catalog>
+    </default>
+        
+    <stores>
+        <default>
+            <web>
+                <routers>
+                    <dailydeal>
+                        <class>Webplanet_Dailydeal_Controller_Router</class>
+                    </dailydeal>
+                </routers>
+            </web>
+        </default>
+    </stores>
+</config>

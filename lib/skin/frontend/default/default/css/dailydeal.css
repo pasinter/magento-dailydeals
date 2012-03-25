@@ -1,0 +1,121 @@
+
+
+.dailydeal-deals-browse h1{
+    font-size: 44px;
+    color: #0061B1;
+    float: left;
+}
+
+
+#dailydeal_countdown{
+    float: left;
+    margin: 0 0 0 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+#dailydeal_countdown span.time{
+    font-size:22px;
+    font-weight: bold;
+    background-color:#0061B1;
+    color: #fff;
+    padding: 10px 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: block;
+}
+
+
+#daily_deals_blurb{
+    float: left;
+    margin: 0 0 0 20px;
+}
+
+.bar{
+    width: 100%;
+    height: 20px;
+    
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    
+    
+    
+    background: #cedce7; /* Old browsers */
+background: -moz-linear-gradient(top,  #cedce7 0%, #999999 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cedce7), color-stop(100%,#999999)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #cedce7 0%,#999999 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #cedce7 0%,#999999 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #cedce7 0%,#999999 100%); /* IE10+ */
+background: linear-gradient(top,  #cedce7 0%,#999999 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#999999',GradientType=0 ); /* IE6-9 */
+
+
+
+}
+
+.bar .inner{
+    height: 100%;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    
+    
+    
+    
+    
+    
+    
+    
+background: #b4ddb4; /* Old browsers */
+background: -moz-linear-gradient(top,  #b4ddb4 0%, #83c783 0%, #52b152 16%, #008a00 43%, #005700 72%, #002400 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b4ddb4), color-stop(0%,#83c783), color-stop(16%,#52b152), color-stop(43%,#008a00), color-stop(72%,#005700), color-stop(100%,#002400)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #b4ddb4 0%,#83c783 0%,#52b152 16%,#008a00 43%,#005700 72%,#002400 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #b4ddb4 0%,#83c783 0%,#52b152 16%,#008a00 43%,#005700 72%,#002400 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #b4ddb4 0%,#83c783 0%,#52b152 16%,#008a00 43%,#005700 72%,#002400 100%); /* IE10+ */
+background: linear-gradient(top,  #b4ddb4 0%,#83c783 0%,#52b152 16%,#008a00 43%,#005700 72%,#002400 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=0 ); /* IE6-9 */
+
+
+
+}
+
+.dailydeal-deals-browse ul.products-grid.columns_3 li.item{width:30%;}
+
+.dailydeal-deals-browse ul.products-grid .product-image{display: block; margin: 0 auto; border: 1px solid #aeaeae;}
+.dailydeal-deals-browse ul.products-grid .product-image img{display: block; margin: 0 auto;}
+
+.stock_remaining{padding: 4px 0; text-align:center;}
+
+.dailydeal-deals-browse ul.products-grid h4.product-name{
+    text-decoration:underline;
+    text-align: center;
+    font-size: 14px;
+}
+
+.dailydeal-deals-browse ul.products-grid .actions{
+    text-align: center;
+}
+
+.dailydeal-deals-browse ul.products-grid button.button.btn-cart{
+    float: none;
+}
+.dailydeal-deals-browse ul.products-grid .prices{
+    margin: 0 0 10px 0;
+}
+.dailydeal-deals-browse ul.products-grid .prices li{
+    text-align: center;
+}
+.dailydeal-deals-browse .savings {
+    color: green;
+}
+.dailydeal-deals-browse ul.products-grid .prices li.deal_price{
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+}
