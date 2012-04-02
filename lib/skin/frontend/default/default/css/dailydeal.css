@@ -1,6 +1,6 @@
 
 
-.dailydeal-deals-browse h1{
+.dailydeal-index-index h1{
     font-size: 44px;
     color: #0061B1;
     float: left;
@@ -85,36 +85,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', end
 
 }
 
-.dailydeal-deals-browse ul.products-grid.columns_3 li.item{width:30%;}
+.dailydeal-index-index ul.products-grid.columns_3 li.item{width:30%;}
 
-.dailydeal-deals-browse ul.products-grid .product-image{display: block; margin: 0 auto; border: 1px solid #aeaeae;}
-.dailydeal-deals-browse ul.products-grid .product-image img{display: block; margin: 0 auto;}
+.dailydeal-index-index ul.products-grid .product-image{display: block; margin: 0 auto; border: 1px solid #aeaeae;}
+.dailydeal-index-index ul.products-grid .product-image img{display: block; margin: 0 auto;}
 
 .stock_remaining{padding: 4px 0; text-align:center;}
 
-.dailydeal-deals-browse ul.products-grid h4.product-name{
+.dailydeal-index-index ul.products-grid h4.product-name{
     text-decoration:underline;
     text-align: center;
     font-size: 14px;
 }
 
-.dailydeal-deals-browse ul.products-grid .actions{
+.dailydeal-index-index ul.products-grid .actions{
     text-align: center;
 }
 
-.dailydeal-deals-browse ul.products-grid button.button.btn-cart{
+.dailydeal-index-index ul.products-grid button.button.btn-cart{
     float: none;
 }
-.dailydeal-deals-browse ul.products-grid .prices{
+.dailydeal-index-index ul.products-grid .prices{
     margin: 0 0 10px 0;
 }
-.dailydeal-deals-browse ul.products-grid .prices li{
+.dailydeal-index-index ul.products-grid .prices li{
     text-align: center;
 }
-.dailydeal-deals-browse .savings {
+.dailydeal-index-index .savings {
     color: green;
 }
-.dailydeal-deals-browse ul.products-grid .prices li.deal_price{
+.dailydeal-index-index ul.products-grid .prices li.deal_price{
     font-size: 14px;
     font-weight: bold;
     color: red;

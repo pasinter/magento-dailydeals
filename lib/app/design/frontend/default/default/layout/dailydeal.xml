@@ -38,4 +38,27 @@
         </reference>
     </dailydeal_deals_browse>
     
+    <dailydeal_index_index>
+      <reference name="root">
+        <action method="setTemplate"><template>page/1column.phtml</template></action>
+        <remove name="left" />
+      </reference>
+        <reference name="content">
+            <block type="dailydeal/deals" name="deals" template="dailydeal/browse.phtml">
+                <block type="dailydeal/deal_list" name="deal_list" template="dailydeal/deal/list.phtml">
+                    
+                </block>
+            </block>
+
+        </reference>
+
+
+        <reference name="left">
+            <!--block type="browseby/attribute_navigation" name="browseby.attribute.nav.manufacturer" after="catalog.leftnav" template="browseby/attribute/left.phtml">
+                <action method="setBrowseAttribute"><code>manufacturer</code></action>
+            </block-->
+
+        </reference>
+    </dailydeal_index_index>
+    
 </layout>
