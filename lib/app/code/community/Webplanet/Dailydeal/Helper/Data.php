@@ -198,9 +198,10 @@ class Webplanet_Dailydeal_Helper_Data extends Mage_Core_Helper_Abstract
         //$ids = $collection->getLoadedIds();
 
         $dealsCollection = Mage::getModel('dailydeal/deal')->getCollection()
-                                    //->addDealDateFilter()
-                                    ->addProductsFilter($collection)
-                            ;
+                //->addDealDateFilter()
+                ->addProductsFilter($collection)
+        ;
+        
         if(count($dealsCollection) > 0)
         {
             foreach($dealsCollection as $deal)
@@ -217,10 +218,13 @@ class Webplanet_Dailydeal_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getCurrentDealForProduct($product)
     {
+        /**
         if($product->getData('dailydeal')) {
             return $product->getData('dailydeal');
         }
-        
+         * 
+         */
+ 
         $collection = Mage::getModel('dailydeal/deal')->getCollection()
             //->addAttributeToSelect($additionalAttributes)
             ->addFieldToFilter('product_id', $product->getEntityId())
@@ -231,7 +235,7 @@ class Webplanet_Dailydeal_Helper_Data extends Mage_Core_Helper_Abstract
         //echo $collection->getSelectSql();
         foreach ($collection as $deal) {
             //echo $deal->getData('deal_id');
-            $product->setData('dailydeal', $deal);
+            //$product->setData('dailydeal', $deal);
             
             return $deal;
         }
@@ -254,7 +258,7 @@ class Webplanet_Dailydeal_Helper_Data extends Mage_Core_Helper_Abstract
         
         //$deal = $collection->
           
-        return false;
+        return null;
     }
     
     /**
@@ -274,5 +278,21 @@ class Webplanet_Dailydeal_Helper_Data extends Mage_Core_Helper_Abstract
         }
         
         return $blocks;
+    }
+    
+    
+    /**
+     * Get the magento date in format:
+     * 2033-12-33 0:0:0
+     * 
+     * @return string 
+     */
+    public function getMagentoDate($format='Y-m-d 00:00:00') 
+    {
+        /* @var $dt Mage_Core_Model_Date */
+        $dt = Mage::getModel('core/date');
+        $now = $dt->timestamp(time());
+        $date = date($format, $now);
+        return $date;
     }
 }

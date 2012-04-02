@@ -13,6 +13,8 @@ class Webplanet_Dailydeal_Model_Observer
      */
     public function onCatalogProductCollectionLoadAfter($event)
     {
+        
+        return $this;
         $collection = $event->getData('collection');
         $ids = $collection->getLoadedIds();
 
@@ -30,9 +32,9 @@ class Webplanet_Dailydeal_Model_Observer
         $helper = Mage::helper('dailydeal');
         $deal = $helper->getCurrentDealForProduct($quoteItem->getProduct());
         
-        if(!$deal) {
+        if(null === $deal) {
             // no deal found for this product, ignore
-            return;
+            return $this;
         }
         
         // @todo - detect if the product actually has a current deal going on
@@ -112,33 +114,43 @@ class Webplanet_Dailydeal_Model_Observer
     
     public function onSalesConvertQuoteItemToOrderItem(Varien_Event_Observer $observer)
     {
-        $quoteItem = $observer->getItem();
         
-        if ($dailydealOptions = $quoteItem->getOptionByCode(self::QUOTE_ITEM_OPTION_CODE)) {
-            $orderItem = $observer->getOrderItem();
-            $options = $orderItem->getProductOptions();
-            $options[self::ORDER_ITEM_OPTION_CODE] = unserialize($dailydealOptions->getValue());
-            $orderItem->setProductOptions($options);
-        }
-        
-        // save Daily Deal options to order item
-        $orderItem = $observer->getOrderItem();
-        $options = $orderItem->getProductOptions();
-        $options['additional_options'][] = array(
-            'label' => 'Daily Deal Special Price', 
-            'value' => Mage::helper('checkout')->formatPrice($quoteItem->getPrice())
-                    . ' instead of ' . Mage::helper('checkout')->formatPrice($quoteItem->getProduct()->getPrice())
-        );
-        
-        $orderItem->setProductOptions($options);
+        try {
+            // update deal_qty_sold 
+            $helper = Mage::helper('dailydeal');
+            
+            $quoteItem = $observer->getItem();
+            $deal = $helper->getCurrentDealForProduct($quoteItem->getProduct());
+            
+            //var_dump($deal);exit;
+            
+            if(null !== $deal) {                
+                //return $this;
+                if ($dailydealOptions = $quoteItem->getOptionByCode(self::QUOTE_ITEM_OPTION_CODE)) {
+                    $orderItem = $observer->getOrderItem();
+                    $options = $orderItem->getProductOptions();
+                    $options[self::ORDER_ITEM_OPTION_CODE] = unserialize($dailydealOptions->getValue());
+                    $orderItem->setProductOptions($options);
+                }
 
-        
-        // update deal_qty_sold 
-        $helper = Mage::helper('dailydeal');
-        $deal = $helper->getCurrentDealForProduct($quoteItem->getProduct());
-        
-        $deal->setData('deal_qty_sold', $deal->getData('deal_qty_sold') + 1);
-        $deal->save();
+                // save Daily Deal options to order item
+                $orderItem = $observer->getOrderItem();
+                $options = $orderItem->getProductOptions();
+                $options['additional_options'][] = array(
+                    'label' => 'Daily Deal Special Price', 
+                    'value' => Mage::helper('checkout')->formatPrice($quoteItem->getPrice())
+                            . ' instead of ' . Mage::helper('checkout')->formatPrice($quoteItem->getProduct()->getPrice())
+                );
+
+                $orderItem->setProductOptions($options);
+
+                $deal->setData('deal_qty_sold', $deal->getData('deal_qty_sold') + 1);
+                $deal->save();
+            }
+        } catch (Exception $e) {
+            echo $e;exit;
+        }
+        return $this;
     }
 }
 

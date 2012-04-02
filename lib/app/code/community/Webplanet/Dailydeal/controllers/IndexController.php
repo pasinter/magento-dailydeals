@@ -14,14 +14,16 @@
  * @package     Webplanet_Dailydeal
  * @author      Ken Golovin <ken@webplanet.co.nz>
  */
-class Webplanet_Dailydeal_DealsController extends Mage_Core_Controller_Front_Action
+class Webplanet_Dailydeal_IndexController extends Mage_Core_Controller_Front_Action
 {
+
+    
     /**
      * Browse action
      *
      * see http://blog.baobaz.com/en/blog/magento-module-create-your-own-controller
      */
-    public function browseAction()
+    public function indexAction()
     {
         // works
       
@@ -31,12 +33,5 @@ class Webplanet_Dailydeal_DealsController extends Mage_Core_Controller_Front_Act
         $this->renderLayout();       
     }
 
-    public function getCollection()
-    {
-      // dailydeal_date
-      // dailydeal_qty_available
-      // dailydeal_price
-
-
-    }
+  
 }
