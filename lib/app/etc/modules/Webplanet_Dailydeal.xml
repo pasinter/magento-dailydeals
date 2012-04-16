@@ -4,7 +4,7 @@
     <modules>
         <Webplanet_Dailydeal>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
         </Webplanet_Dailydeal>
     </modules>
 </config>
