@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Webplanet
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @copyright   Copyright (c) 2011 Webplanet Ltd Nz
+ */
+
+/**
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @author      Ken Golovin <ken@webplanet.co.nz>
+ */
 class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Product_Form extends Mage_Adminhtml_Block_Widget_Form
 {
 

@@ -1,12 +1,26 @@
 <?php
 
+/**
+ * Webplanet
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @copyright   Copyright (c) 2011 Webplanet Ltd Nz
+ */
+
+/**
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @author      Ken Golovin <ken@webplanet.co.nz>
+ */
 class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
 
     public function __construct()
     {
         parent::__construct();
-
+        $this->_headerText = $this->__('Deal Settings');
         $this->_objectId = 'id';
         $this->_blockGroup = 'dailydeal';
         $this->_controller = 'adminhtml_deal';

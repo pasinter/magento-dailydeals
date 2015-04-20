@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Webplanet
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @copyright   Copyright (c) 2011 Webplanet Ltd Nz
+ */
+
+/**
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @author      Ken Golovin <ken@webplanet.co.nz>
+ */
 class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Product_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
 
@@ -201,10 +215,10 @@ class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Product_Grid extends Mage_Ad
             'column_css_class' => 'name'
         ));
 
-        $sets = Mage::getResourceModel('eav/entity_attribute_set_collection')
-                ->setEntityTypeFilter(Mage::getModel('catalog/product')->getResource()->getTypeId())
-                ->load()
-                ->toOptionHash();
+//        $sets = Mage::getResourceModel('eav/entity_attribute_set_collection')
+//                ->setEntityTypeFilter(Mage::getModel('catalog/product')->getResource()->getTypeId())
+//                ->load()
+//                ->toOptionHash();
 
         $this->addColumn('prd_sku', array(
             'header' => Mage::helper('sales')->__('SKU'),

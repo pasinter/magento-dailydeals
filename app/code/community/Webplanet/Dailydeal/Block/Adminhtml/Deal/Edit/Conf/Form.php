@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Webplanet
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @copyright   Copyright (c) 2011 Webplanet Ltd Nz
+ */
+
+/**
+ *
+ * @category    Webplanet
+ * @package     Webplanet_Dailydeal
+ * @author      Ken Golovin <ken@webplanet.co.nz>
+ */
 class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Conf_Form extends Mage_Adminhtml_Block_Widget_Form
 {
 
@@ -43,7 +57,7 @@ class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Conf_Form extends Mage_Admin
         /*         * ***************************************************** */
         $fieldset->addField('price', 'text', array(
             'name' => 'price',
-            'label' => Mage::helper('catalog')->__('Product Price') . Mage::app()->getStore()->getBaseCurrency()->getCode(),
+            'label' => Mage::helper('catalog')->__('Product Price ') . Mage::app()->getStore()->getBaseCurrency()->getCode(),
             'title' => Mage::helper('catalog')->__('Standard product price'),
             'readonly' => true,
             'class' => 'textbox-readonly',
@@ -86,7 +100,7 @@ class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Conf_Form extends Mage_Admin
             'label' => Mage::helper('dailydeal')->__('Deal Price'),
             'class' => 'required-entry validate-number validate-greater-than-zero',
             'required' => true,
-            'value' => $deal->getDealPrice(),
+            'value' => number_format($deal->getDealPrice(), 2),
             'after_element_html' => "<br>Default discount is 15% from the regular product price",
         );
 
