@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Webplanet
  *
@@ -17,8 +18,6 @@
 class Webplanet_Dailydeal_Block_Product_List extends Mage_Core_Block_Template
 {
 
-
-
     /**
      * Retrieve bestsellers collection
      *
@@ -26,23 +25,21 @@ class Webplanet_Dailydeal_Block_Product_List extends Mage_Core_Block_Template
      */
     protected function _getProductCollection()
     {
-      $storeId = Mage::app()->getStore()->getStoreId();
-      $this->setStoreId($storeId);
-      if (is_null($this->_productCollection))
-      {
-          $this->_dealsCollection = Mage::getResourceModel('dailydeal/deal');
-          
+        $storeId = Mage::app()->getStore()->getStoreId();
+        $this->setStoreId($storeId);
+        if (is_null($this->_productCollection)) {
+            $this->_dealsCollection = Mage::getResourceModel('dailydeal/deal');
 
-          $this->_productCollection//->addAttributeToSelect('*')
-                          //->setStoreId($storeId)
-                          //->addStoreFilter($storeId)
-                          //->setOrder('qty', 'desc')
-                          ->setPageSize(3)
-                          ;
 
-      }
+            $this->_productCollection//->addAttributeToSelect('*')
+                    //->setStoreId($storeId)
+                    //->addStoreFilter($storeId)
+                    //->setOrder('qty', 'desc')
+                    ->setPageSize(3)
+            ;
+        }
 
-      return $this->_productCollection;
+        return $this->_productCollection;
     }
 
     /**
@@ -55,4 +52,5 @@ class Webplanet_Dailydeal_Block_Product_List extends Mage_Core_Block_Template
 
         return $this->_getProductCollection();
     }
+
 }

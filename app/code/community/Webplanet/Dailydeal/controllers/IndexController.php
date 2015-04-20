@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Webplanet
  *
@@ -17,7 +18,6 @@
 class Webplanet_Dailydeal_IndexController extends Mage_Core_Controller_Front_Action
 {
 
-    
     /**
      * Browse action
      *
@@ -26,12 +26,11 @@ class Webplanet_Dailydeal_IndexController extends Mage_Core_Controller_Front_Act
     public function indexAction()
     {
         // works
-      
+
         $this->loadLayout();
         $this->_initLayoutMessages('catalog/session');
         $this->_initLayoutMessages('checkout/session');
-        $this->renderLayout();       
+        $this->renderLayout();
     }
 
-  
 }

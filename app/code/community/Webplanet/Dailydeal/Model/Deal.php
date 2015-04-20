@@ -3,48 +3,47 @@
 class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
 {
 
-    const STATUS_SCHEDULED  = 1;
-    const STATUS_RUNNING    = 2;
-    const STATUS_ENDED      = 3;
+    const STATUS_SCHEDULED = 1;
+    const STATUS_RUNNING = 2;
+    const STATUS_ENDED = 3;
 
     public function _construct()
     {
-            parent::_construct();
-            $this->_init('dailydeal/deal');
+        parent::_construct();
+        $this->_init('dailydeal/deal');
     }
 
-    /*************************************************************************
+    /*     * ***********************************************************************
      * Private Members
-     *************************************************************************/
+     * *********************************************************************** */
 
     protected function _CalcProductPrice($price, $percent, $type)
     {
-            if ($type)
-                    return $price * (1+($percent/100));
-            else
-                    return $price - ($price/(100+$percent)*$percent);
+        if ($type)
+            return $price * (1 + ($percent / 100));
+        else
+            return $price - ($price / (100 + $percent) * $percent);
     }
 
-    /*************************************************************************
+    /*     * ***********************************************************************
      * Public Members
-     *************************************************************************/
+     * *********************************************************************** */
 
     public function getCustomerGroupIds()
     {
-            $ids = $this->getData('customer_group_ids');
-            if (($ids && !$this->getCustomerGroupChecked()) ||
-            is_string($ids))
-            {
-                    if (is_string($ids)) {
-                            $ids = explode(',', $ids);
-                    }
-
-                    $groupIds = Mage::getModel('customer/group')->getCollection()->getAllIds();
-                    $ids = array_intersect($ids, $groupIds);
-                    $this->setData('customer_group_ids', $ids);
-                    $this->setCustomerGroupChecked(true);
+        $ids = $this->getData('customer_group_ids');
+        if (($ids && !$this->getCustomerGroupChecked()) ||
+                is_string($ids)) {
+            if (is_string($ids)) {
+                $ids = explode(',', $ids);
             }
-            return $ids;
+
+            $groupIds = Mage::getModel('customer/group')->getCollection()->getAllIds();
+            $ids = array_intersect($ids, $groupIds);
+            $this->setData('customer_group_ids', $ids);
+            $this->setCustomerGroupChecked(true);
+        }
+        return $ids;
     }
 
     /**
@@ -54,8 +53,7 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
     public function getStatusDescription()
     {
         $status = 'Not Saved';
-        switch($this->getStatus())
-        {
+        switch ($this->getStatus()) {
             case $this::STATUS_SCHEDULED:
                 $status = Mage::helper('dailydeal')->__('Scheduled');
                 break;
@@ -87,33 +85,28 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
 
     public function isLocked()
     {
-        if($this->isRunning())
-        {
+        if ($this->isRunning()) {
             return true;
         }
 
-        if($this->isEnded())
-        {
+        if ($this->isEnded()) {
             return true;
         }
-        
+
         return false;
     }
 
-	
-
     public function getStore($website = null)
     {
-            if ($website === null)
-            {
-                    if (isset($this->_data['website_ids'][0]))
-                            $website = Mage::app()->getWebsite($this->_data['website_ids'][0]);
-                    else
-                            $website = Mage::app()->getWebsite(null);
-            }
-            if ($website === null)
-                    return Mage::app()->getDefaultStoreView();
-            return $website->getDefaultStore();
+        if ($website === null) {
+            if (isset($this->_data['website_ids'][0]))
+                $website = Mage::app()->getWebsite($this->_data['website_ids'][0]);
+            else
+                $website = Mage::app()->getWebsite(null);
+        }
+        if ($website === null)
+            return Mage::app()->getDefaultStoreView();
+        return $website->getDefaultStore();
     }
 
     /**
@@ -125,44 +118,39 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
      */
     public function getProductPrice($tax = null, $website = null)
     {
-            $tax_helper = Mage::helper('tax');
-            $store = $this->getStore($website);
-            $product = $this->getProduct();
-            $price = $product->getPrice();
-            $priceIncludesTax = $tax_helper->priceIncludesTax($store);
-            $percent = $product->getTaxPercent();
-            $includingPercent = null;
-            $taxClassId = $product->getTaxClassId();
+        $tax_helper = Mage::helper('tax');
+        $store = $this->getStore($website);
+        $product = $this->getProduct();
+        $price = $product->getPrice();
+        $priceIncludesTax = $tax_helper->priceIncludesTax($store);
+        $percent = $product->getTaxPercent();
+        $includingPercent = null;
+        $taxClassId = $product->getTaxClassId();
 
-            if ($percent === null && $taxClassId)
-            {
-                    $request = Mage::getSingleton('tax/calculation')->getRateRequest(null, null, null, $store);
-                    $percent = Mage::getSingleton('tax/calculation')->getRate($request->setProductClassId($taxClassId));
-            }
-            if ($priceIncludesTax && $taxClassId)
-            {
-                    $request = Mage::getSingleton('tax/calculation')->getRateRequest(false, false, false, $store);
-                    $includingPercent = Mage::getSingleton('tax/calculation')->getRate($request->setProductClassId($taxClassId));
-            }
-            if (($percent === false || $percent === null) && $priceIncludesTax && !$includingPercent)
-                    //return $store->roundPrice($price);
-                    return $price;
-
-            if ($priceIncludesTax)
-                    $price = $this->_CalcProductPrice($price, $includingPercent, false);
-            if ($tax || (($tax === null) && ($tax_helper->getPriceDisplayType($store) != Mage_Tax_Model_Config::DISPLAY_TYPE_EXCLUDING_TAX)))
-                    $price = $this->_CalcProductPrice($price, $percent, true);
-            //return $store->roundPrice($price);
+        if ($percent === null && $taxClassId) {
+            $request = Mage::getSingleton('tax/calculation')->getRateRequest(null, null, null, $store);
+            $percent = Mage::getSingleton('tax/calculation')->getRate($request->setProductClassId($taxClassId));
+        }
+        if ($priceIncludesTax && $taxClassId) {
+            $request = Mage::getSingleton('tax/calculation')->getRateRequest(false, false, false, $store);
+            $includingPercent = Mage::getSingleton('tax/calculation')->getRate($request->setProductClassId($taxClassId));
+        }
+        if (($percent === false || $percent === null) && $priceIncludesTax && !$includingPercent)
+        //return $store->roundPrice($price);
             return $price;
+
+        if ($priceIncludesTax)
+            $price = $this->_CalcProductPrice($price, $includingPercent, false);
+        if ($tax || (($tax === null) && ($tax_helper->getPriceDisplayType($store) != Mage_Tax_Model_Config::DISPLAY_TYPE_EXCLUDING_TAX)))
+            $price = $this->_CalcProductPrice($price, $percent, true);
+        //return $store->roundPrice($price);
+        return $price;
     }
-
-
 
     public function getProduct()
     {
-        if ($this->hasData('product'))
-        {
-                return $this->getData('product');
+        if ($this->hasData('product')) {
+            return $this->getData('product');
         }
 
         $product = Mage::getModel('catalog/product')->load($this->getProductId());
@@ -193,123 +181,113 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
         return $product_price - $this->getDealPrice();
     }
 
-
-    /*************************************************************************
+    /*     * ***********************************************************************
      * Event Handlers
-     *************************************************************************/
+     * *********************************************************************** */
+
     protected function _afterLoad()
     {
-            parent::_afterLoad();
+        parent::_afterLoad();
 
-            $this->_prepareDatesAfterLoad();
-            $this->_preparePromoAfterLoad();
+        $this->_prepareDatesAfterLoad();
+        $this->_preparePromoAfterLoad();
 
-            $websiteIds = $this->_getData('website_ids');
-            if (is_string($websiteIds)) {
-                    $this->setWebsiteIds(explode(',', $websiteIds));
-            }
-            $groupIds = $this->getCustomerGroupIds();
-            if (is_string($groupIds)) {
-                    $this->setCustomerGroupIds(explode(',', $groupIds));
-            }
+        $websiteIds = $this->_getData('website_ids');
+        if (is_string($websiteIds)) {
+            $this->setWebsiteIds(explode(',', $websiteIds));
+        }
+        $groupIds = $this->getCustomerGroupIds();
+        if (is_string($groupIds)) {
+            $this->setCustomerGroupIds(explode(',', $groupIds));
+        }
     }
 
     protected function _beforeSave()
     {
-            // Clear product cache (to ensure the observer adds watermark and special price etc.):
-            $product = Mage::getModel('catalog/product')->load($this->getProductId());
-            $product->cleanCache();
+        // Clear product cache (to ensure the observer adds watermark and special price etc.):
+        $product = Mage::getModel('catalog/product')->load($this->getProductId());
+        $product->cleanCache();
 
-            $this->_prepareWebsiteIds();
-            $this->_prepareDatesForSave();
-            $this->_preparePromoForSave();
-            $this->_prepareRecurrenceForSave();
+        $this->_prepareWebsiteIds();
+        $this->_prepareDatesForSave();
+        $this->_preparePromoForSave();
+        $this->_prepareRecurrenceForSave();
 
-            if (is_array($this->getCustomerGroupIds())) {
-                    $this->setCustomerGroupIds(join(',', $this->getCustomerGroupIds()));
-
-            }
-            parent::_beforeSave();
+        if (is_array($this->getCustomerGroupIds())) {
+            $this->setCustomerGroupIds(join(',', $this->getCustomerGroupIds()));
+        }
+        parent::_beforeSave();
     }
 
     protected function _prepareWebsiteIds()
     {
-            if (is_array($this->getWebsiteIds())) {
-                    $this->setWebsiteIds(join(',', $this->getWebsiteIds()));
-            }
-            return $this;
+        if (is_array($this->getWebsiteIds())) {
+            $this->setWebsiteIds(join(',', $this->getWebsiteIds()));
+        }
+        return $this;
     }
 
     protected function _prepareDatesForSave()
     {
-            // calc start/end time only if the user entered one...
-            // when adding disabled field in form, the value is not passed back to in the POST
-            // event
+        // calc start/end time only if the user entered one...
+        // when adding disabled field in form, the value is not passed back to in the POST
+        // event
+        // This happens when saving from the Admin new/edit pages:
+        if ($this->getStartDate()) {
+            $start_date_time = strtotime($this->getStartDate() . " " . $this->getStartHour());
+            $end_date_time = strtotime($this->getStartDate() . " " . $this->getStartHour() . " +" . $this->getSaleLength() . " hour");
 
+            // When setting to the entity, convert to UTC (GMT-0):
+            $this->setStartDateTime(Mage::getModel('core/date')->gmtDate("Y-m-d H:i:s", $start_date_time));
+            $this->setEndDateTime(Mage::getModel('core/date')->gmtDate("Y-m-d H:i:s", $end_date_time));
+        }
 
-    // This happens when saving from the Admin new/edit pages:
-    if ($this->getStartDate())
-    {
-        $start_date_time = strtotime($this->getStartDate()." ".$this->getStartHour());
-        $end_date_time = strtotime($this->getStartDate()." ".$this->getStartHour()." +".$this->getSaleLength()." hour");
-
-        // When setting to the entity, convert to UTC (GMT-0):
-        $this->setStartDateTime(Mage::getModel('core/date')->gmtDate("Y-m-d H:i:s", $start_date_time));
-        $this->setEndDateTime(Mage::getModel('core/date')->gmtDate("Y-m-d H:i:s", $end_date_time));
-    }
-
-            return $this;
+        return $this;
     }
 
     protected function _preparePromoForSave()
     {
-            if (!$this->hasData("promo"))
-            {
-                    $promo = array();
-                    foreach ($this->GetData() as $key => $val)
-                    {
-                            if (substr($key, 0, 6) == "promo_")
-                            {
-                                    $promo[substr($key, 6)] = $val;
-                                    $this->unsetData($key);
-                            }
-                    }
-                    $this->setPromo(serialize($promo));
-
+        if (!$this->hasData("promo")) {
+            $promo = array();
+            foreach ($this->GetData() as $key => $val) {
+                if (substr($key, 0, 6) == "promo_") {
+                    $promo[substr($key, 6)] = $val;
+                    $this->unsetData($key);
+                }
             }
-            return $this;
+            $this->setPromo(serialize($promo));
+        }
+        return $this;
     }
 
     public function _prepareRecurrenceForSave()
     {
-            if (($this->getRecurrenceLength() > 0) && ($this->getRecurrenceAncestor() == null))
-            {
-                    $this->setRecurrenceAncestor($this->getZizioObjectId());
-            }
-            return $this;
+        if (($this->getRecurrenceLength() > 0) && ($this->getRecurrenceAncestor() == null)) {
+            $this->setRecurrenceAncestor($this->getZizioObjectId());
+        }
+        return $this;
     }
 
     protected function _preparePromoAfterLoad()
     {
-            $promo = $this->_getData("promo");
-            $this->unsetData("promo");
-            if (is_string($promo))
-                    $promo = unserialize($promo);
-            if (!is_array($promo))
-                    return;
-            foreach ($promo as $key => $val)
-                    $this->setData("promo_{$key}", $val);
+        $promo = $this->_getData("promo");
+        $this->unsetData("promo");
+        if (is_string($promo))
+            $promo = unserialize($promo);
+        if (!is_array($promo))
+            return;
+        foreach ($promo as $key => $val)
+            $this->setData("promo_{$key}", $val);
     }
 
     public function preparePromoAfterLoad()
     {
-            $this->_preparePromoAfterLoad();
+        $this->_preparePromoAfterLoad();
     }
 
     protected function _prepareDatesAfterLoad()
     {
-        if ($this->getStartDateTime() && $this->getEndDateTime())
-        {
+        if ($this->getStartDateTime() && $this->getEndDateTime()) {
             // Start Date (converted from UTC to store timezone):
             $start_date_time = Mage::getModel('core/date')->date(null, $this->getStartDateTime());
 
@@ -322,11 +300,10 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
             $start_time = substr($start_date_time, 11, 5);
             $this->setStartHour($start_time);
 
-            $sale_length = (strtotime($end_date_time)-strtotime($start_date_time))/3600;
+            $sale_length = (strtotime($end_date_time) - strtotime($start_date_time)) / 3600;
             $this->setSaleLength($sale_length);
-
         }
-        
+
         return $this;
     }
 
@@ -334,11 +311,11 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
     {
         $originalQty = $this->getData('deal_qty');
         $soldQty = $this->getData('deal_qty_sold');
-        
+
         //var_dump($this->getData());exit;
 
         $percentage = 100 - round(100 * $soldQty / $originalQty);
-        
+
         //var_dump($percentage);exit;
 
         $increments = $this->getDealQty();
@@ -346,9 +323,8 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
         // @todo
         // get the original qty
         // get sold items qty
-        
-        return $percentage;
 
+        return $percentage;
     }
 
 }

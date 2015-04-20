@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Webplanet
  *
@@ -26,28 +27,27 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
      */
     protected function getDealCollection()
     {
-      $storeId = Mage::app()->getStore()->getStoreId();
-      $this->setStoreId($storeId);
-      
-      if (is_null($this->_dealsCollection))
-      {
-          $date = date('Y-m-d');
-          $this->_dealsCollection = Mage::getResourceModel('dailydeal/deal_collection');
-          
-          $this->_dealsCollection//->addAttributeToSelect('*')
-              //->setStoreId($storeId)
-              //->addStoreFilter($storeId)
-              //->setOrder('qty', 'desc')
-              //->addFieldToFilter('deal_start', array('eq' => $date))
-              ->addDealDateFilter($date)
-              ->setPageSize(3)
-                  
-          ;
-          //echo $this->_dealsCollection->getSelectSql();
-          //exit;
-      }
+        $storeId = Mage::app()->getStore()->getStoreId();
+        $this->setStoreId($storeId);
 
-      return $this->_dealsCollection;
+        if (is_null($this->_dealsCollection)) {
+            $date = date('Y-m-d');
+            $this->_dealsCollection = Mage::getResourceModel('dailydeal/deal_collection');
+
+            $this->_dealsCollection//->addAttributeToSelect('*')
+                    //->setStoreId($storeId)
+                    //->addStoreFilter($storeId)
+                    //->setOrder('qty', 'desc')
+                    //->addFieldToFilter('deal_start', array('eq' => $date))
+                    ->addDealDateFilter($date)
+                    ->setPageSize(3)
+
+            ;
+            //echo $this->_dealsCollection->getSelectSql();
+            //exit;
+        }
+
+        return $this->_dealsCollection;
     }
 
     public function getColumnCount()
@@ -55,7 +55,6 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
 
         return 3;
     }
-
 
     /**
      * Retrieve URL for adding item to shoping cart
@@ -65,7 +64,7 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
      */
     public function getAddToCartUrl($deal)
     {
-        
+
         return $this->helper('checkout/cart')->getAddUrl($deal->getProduct(), array());
     }
 
