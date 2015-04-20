@@ -9,6 +9,7 @@ class Webplanet_Dailydeal_Adminhtml_DailydealController extends Mage_Adminhtml_C
             $this->loadLayout()
                     ->_setActiveMenu('promo/webplanet_dailydeal')
                     ->_addBreadcrumb(Mage::helper('adminhtml')->__('Daily Deals Management'), Mage::helper('adminhtml')->__('Daily Deals Management'));
+            $this->_title($this->__('Daily Deals'));
         } catch (Exception $ex) {
             
         }
@@ -27,7 +28,6 @@ class Webplanet_Dailydeal_Adminhtml_DailydealController extends Mage_Adminhtml_C
 
     public function editAction()
     {
-
         $id = $this->getRequest()->getParam('id');
 
         $deal = Mage::getModel('dailydeal/deal')->load($id);
@@ -137,7 +137,6 @@ class Webplanet_Dailydeal_Adminhtml_DailydealController extends Mage_Adminhtml_C
 
     public function massDeleteAction()
     {
-
         $dealIds = $this->getRequest()->getParam('deal_id');
         if (!is_array($dealIds)) {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select item(s)'));

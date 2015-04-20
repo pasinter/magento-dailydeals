@@ -8,58 +8,60 @@
 -->
 <config>
     <modules>
-            <Webplanet_Dailydeal>
-                    <version>0.1.1</version>
-            </Webplanet_Dailydeal>
+        <Webplanet_Dailydeal>
+            <version>0.1.1</version>
+        </Webplanet_Dailydeal>
     </modules>
     <global>
         <blocks>
-                <dailydeal>
-                        <class>Webplanet_Dailydeal_Block</class>
-                </dailydeal>
+            <dailydeal>
+                <class>Webplanet_Dailydeal_Block</class>
+            </dailydeal>
         </blocks>
         <helpers>
-                <dailydeal>
-                        <class>Webplanet_Dailydeal_Helper</class>
-                </dailydeal>
+            <dailydeal>
+                <class>Webplanet_Dailydeal_Helper</class>
+            </dailydeal>
         </helpers>
 
 
         <models>
             <dailydeal>
-                    <class>Webplanet_Dailydeal_Model</class>
-                    <resourceModel>dailydeal_mysql4</resourceModel>
+                <class>Webplanet_Dailydeal_Model</class>
+                <resourceModel>dailydeal_mysql4</resourceModel>
             </dailydeal>
             <dailydeal_mysql4>
-                    <class>Webplanet_Dailydeal_Model_Mysql4</class>
-                    <entities>
-                            <deal><table>webplanet_dailydeal_deal</table></deal>
-                    </entities>
+                <class>Webplanet_Dailydeal_Model_Mysql4</class>
+                <entities>
+                    <deal>
+                        <table>webplanet_dailydeal_deal</table>
+                    </deal>
+                </entities>
             </dailydeal_mysql4>
         </models>
 
 
         <resources>
             <dailydeal_setup>
-              <setup>
-                <module>Webplanet_Dailydeal</module>
-                <class>Webplanet_Dailydeal_Model_Resource_Eav_Mysql4_Setup</class>
-              </setup>
+                <setup>
+                    <module>Webplanet_Dailydeal</module>
+                    <class>Webplanet_Dailydeal_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
 
-              <connection>
-                <use>core_setup</use>
-              </connection>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
             </dailydeal_setup>
 
             <dailydeal_write>
-              <connection>
-                <use>core_write</use>
-              </connection>
+                <connection>
+                    <use>core_write</use>
+                </connection>
             </dailydeal_write>
             <dailydeal_read>
-              <connection>
-                <use>core_read</use>
-              </connection>
+                <connection>
+                    <use>core_read</use>
+                </connection>
             </dailydeal_read>
         </resources>
 
@@ -68,11 +70,11 @@
     <admin>
         <routers>
             <dailydeal>
-                    <use>admin</use>
-                    <args>
-                        <module>Webplanet_Dailydeal</module>
-                        <frontName>dailydeal</frontName>
-                    </args>
+                <use>admin</use>
+                <args>
+                    <module>Webplanet_Dailydeal</module>
+                    <frontName>dailydeal</frontName>
+                </args>
             </dailydeal>
         </routers>
     </admin>
@@ -90,7 +92,7 @@
         </routers>
 
         <events>
-           <catalog_product_collection_load_after>
+            <catalog_product_collection_load_after>
                 <observers>
                     <weblanet_dailydeal>
                         <type>model</type>
@@ -123,11 +125,11 @@
         </events>
 
         <layout>
-          <updates module="Webplanet_Dailydeal">
-            <dailydeal>
-              <file>dailydeal.xml</file>
-            </dailydeal>
-          </updates>
+            <updates module="Webplanet_Dailydeal">
+                <dailydeal>
+                    <file>dailydeal.xml</file>
+                </dailydeal>
+            </updates>
         </layout>
     </frontend>
 
