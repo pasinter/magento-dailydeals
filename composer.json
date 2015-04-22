@@ -4,6 +4,11 @@
     "type": "magento-module",
     "description": "Daily Deals extension",
     "homepage": "https://github.com/pasinter/MagentoDailyDealExtension",
+    "authors":[
+        {
+            "name":"pasinter"
+        }
+    ],
     "suggest": {
         "magento-hackathon/magento-composer-installer": "*"
     }
