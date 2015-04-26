@@ -2,17 +2,13 @@
     $_dealCollection = $this->getDealCollection();
     $_helper = $this->helper('dailydeal');
 ?>
+
 <?php if(!$_dealCollection->count()): ?>
 <p class="note-msg"><?php echo $this->__('There are no current deals.') ?></p>
 <?php else: ?>
 
 
-<style>
-    
-</style>
 <div class="category-products">
-
-
 <?php $_collectionSize = $_dealCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
     <?php $i=0; foreach ($_dealCollection as $_deal): ?>
@@ -49,12 +45,10 @@
                     <?php endif; ?>
                 </div>
             </li>
-        <?php if($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        <?php if($i % $_columnCount == 0 || $i == $_collectionSize): ?>
         </ul>
         <?php endif ?>
     <?php endforeach ?>
-        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
-
-
+    <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
 </div>
 <?php endif; ?>
