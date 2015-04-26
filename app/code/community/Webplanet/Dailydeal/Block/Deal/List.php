@@ -21,12 +21,23 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
     protected $_dealsCollection;
 
     /**
+     * (non-PHPdoc)
+     * 
+     */
+    protected function _prepareLayout()
+    {
+//        echo 'Webplanet_Dailydeal_Block_Deal_List::_prepareLayout';
+        return parent::_prepareLayout();
+    }
+    
+    /**
      * Retrieve bestsellers collection
      *
      * @return Mage_Eav_Model_Entity_Collection_Abstract
      */
     protected function getDealCollection()
     {
+//        echo 'Webplanet_Dailydeal_Block_Deal_List::getDealCollection';
         $storeId = Mage::app()->getStore()->getStoreId();
         $this->setStoreId($storeId);
 
@@ -52,7 +63,6 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
 
     public function getColumnCount()
     {
-
         return 3;
     }
 
@@ -64,8 +74,25 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
      */
     public function getAddToCartUrl($deal)
     {
-
         return $this->helper('checkout/cart')->getAddUrl($deal->getProduct(), array());
+    }
+    
+    /**
+     * 
+     * @return \Mage_Core_Model_Date
+     */
+    public function getCurrentStoreTime()
+    {
+        return Mage::getModel('core/date');
+    }
+    
+    /**
+     *
+     * @return Zend_Date
+     */
+    public function getNextExpireTime()
+    {
+        return Mage::helper('dailydeal')->getNextExpireTime();
     }
 
 }

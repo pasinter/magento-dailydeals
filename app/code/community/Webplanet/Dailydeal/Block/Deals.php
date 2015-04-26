@@ -24,7 +24,7 @@ class Webplanet_Dailydeal_Block_Deals extends Mage_Catalog_Block_Product_Abstrac
      */
     protected function _prepareLayout()
     {
-
+//        echo 'Webplanet_Dailydeal_Block_Deals::_prepareLayout';
         //$label = Mage::helper('dailydeal')->__('Daily Deals');
         /*
           $label = '';
@@ -71,6 +71,8 @@ class Webplanet_Dailydeal_Block_Deals extends Mage_Catalog_Block_Product_Abstrac
           }
          * 
          */
+        
+        return $this;
     }
 
     /**
@@ -80,7 +82,7 @@ class Webplanet_Dailydeal_Block_Deals extends Mage_Catalog_Block_Product_Abstrac
      */
     public function getProductListHtml()
     {
-
+//        echo 'Webplanet_Dailydeal_Block_Deals::getProductListHtml';
         return $this->getChildHtml('deal_list');
     }
 
@@ -90,13 +92,15 @@ class Webplanet_Dailydeal_Block_Deals extends Mage_Catalog_Block_Product_Abstrac
      */
     public function getNextExpireTime()
     {
-
         return Mage::helper('dailydeal')->getNextExpireTime();
     }
 
+    /**
+     * 
+     * @return \Mage_Core_Model_Date
+     */
     public function getCurrentStoreTime()
     {
-
         return Mage::getModel('core/date');
     }
 

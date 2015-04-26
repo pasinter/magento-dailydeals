@@ -1,7 +1,11 @@
 Magento Daily Deal Extension
 ======
 
-Configuration
+Magento Configuration
+-----------------------
+In System > Configuration > Developer > Template Settings > Allow Symlinks, change to "Yes"
+
+Deal fields
 -----------------
 `Deals expire at` - time when deals expire  
 `Number of daily deals` - the maximum number of deals available daily. Default is 3  
@@ -11,7 +15,7 @@ Configuration
 
 Daily Deals Admin 
 -----------------
-* View/Create deals under Promotions => Webplanet Daily Deals
+* View/Create deals under Promotions => Daily Deals
 * To caeate a deal, click "Add Daily Deal"
 * In the Product Selection grid, select the product for the deal. Use name, sku, price etc filters to look for the products and press Search. Click on the product to select it
 * Once product is selected, modify the Deal Settings as required. 

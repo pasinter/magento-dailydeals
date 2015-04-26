@@ -16,6 +16,7 @@ app/code/community/Webplanet/Dailydeal/controllers/Adminhtml/DailydealController
 app/code/community/Webplanet/Dailydeal/controllers/IndexController.php app/code/community/Webplanet/Dailydeal/controllers/IndexController.php
 app/code/community/Webplanet/Dailydeal/etc/config.xml app/code/community/Webplanet/Dailydeal/etc/config.xml
 app/code/community/Webplanet/Dailydeal/etc/system.xml app/code/community/Webplanet/Dailydeal/etc/system.xml
+app/code/community/Webplanet/Dailydeal/etc/adminhtml.xml app/code/community/Webplanet/Dailydeal/etc/adminhtml.xml
 app/code/community/Webplanet/Dailydeal/Helper/Data.php app/code/community/Webplanet/Dailydeal/Helper/Data.php
 app/code/community/Webplanet/Dailydeal/Model/Deal.php app/code/community/Webplanet/Dailydeal/Model/Deal.php
 app/code/community/Webplanet/Dailydeal/Model/Mysql4/Deal/Collection.php app/code/community/Webplanet/Dailydeal/Model/Mysql4/Deal/Collection.php
@@ -26,9 +27,9 @@ app/code/community/Webplanet/Dailydeal/Model/Observer.php app/code/community/Web
 app/code/community/Webplanet/Dailydeal/Model/Resource/Eav/Mysql4/Setup.php app/code/community/Webplanet/Dailydeal/Model/Resource/Eav/Mysql4/Setup.php
 app/code/community/Webplanet/Dailydeal/sql/dailydeal_setup/mysql4-install-0.1.0.php app/code/community/Webplanet/Dailydeal/sql/dailydeal_setup/mysql4-install-0.1.0.php
 app/code/community/Webplanet/Dailydeal/sql/dailydeal_setup/mysql4-install-0.1.1.php app/code/community/Webplanet/Dailydeal/sql/dailydeal_setup/mysql4-install-0.1.1.php
-app/design/frontend/default/default/layout/dailydeal.xml app/design/frontend/default/default/layout/dailydeal.xml
-app/design/frontend/default/default/template/dailydeal/browse.phtml app/design/frontend/default/default/template/dailydeal/browse.phtml
-app/design/frontend/default/default/template/dailydeal/deal/list.phtml app/design/frontend/default/default/template/dailydeal/deal/list.phtml
-app/design/frontend/default/default/template/dailydeal/product/list.phtml app/design/frontend/default/default/template/dailydeal/product/list.phtml
+app/design/frontend/base/default/layout/dailydeal.xml app/design/frontend/base/default/layout/dailydeal.xml
+app/design/frontend/base/default/template/dailydeal/browse.phtml app/design/frontend/base/default/template/dailydeal/browse.phtml
+app/design/frontend/base/default/template/dailydeal/deal/list.phtml app/design/frontend/base/default/template/dailydeal/deal/list.phtml
+app/design/frontend/base/default/template/dailydeal/product/list.phtml app/design/frontend/base/default/template/dailydeal/product/list.phtml
 app/etc/modules/Webplanet_Dailydeal.xml app/etc/modules/Webplanet_Dailydeal.xml
-skin/frontend/default/default/css/dailydeal.css skin/frontend/default/default/css/dailydeal.css
+skin/frontend/base/default/css/dailydeal.css skin/frontend/base/default/css/dailydeal.css

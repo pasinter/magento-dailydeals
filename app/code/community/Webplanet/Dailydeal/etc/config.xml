@@ -149,9 +149,9 @@
 
         <layout>
             <updates>
-                <webppanet>
-                    <file>webppanet.xml</file>
-                </webppanet>
+                <webplanet>
+                    <file>webplanet.xml</file>
+                </webplanet>
             </updates>
         </layout>
 
@@ -166,10 +166,10 @@
                             <children>
                                 <config>
                                     <children>
-                                        <webppanet>
+                                        <webplanet>
                                             <title>Webplanet Daily Deals Configuration</title>
                                             <sort_order>10</sort_order>
-                                        </webppanet>
+                                        </webplanet>
                                     </children>
                                 </config>
                             </children>
@@ -190,13 +190,19 @@
     
   
     <default>
+<!--        <dailydeal>
+            <general>
+                <url_prefix>daily-deals</url_prefix>
+            </general>
+        </dailydeal>-->
+
         <catalog>
             <dailydeal>
                 <url_prefix>daily-deals</url_prefix>
             </dailydeal>
         </catalog>
     </default>
-        
+    
     <stores>
         <default>
             <web>

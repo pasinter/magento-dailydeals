@@ -8,6 +8,52 @@
 -->
 <config>
     <sections>
+<!--        <dailydeal translate="label" module="dailydeal">
+            <label>Daily Deals</label>
+            <tab>catalog</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>110</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <url_prefix translate="label">
+                            <label>URL Prefix</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>10</sort_order>
+                        </url_prefix>
+                        <expire_time translate="label">
+                            <label>Deals expire at</label>
+                            <frontend_type>time</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>50</sort_order>
+                        </expire_time>
+                        <deal_count translate="label">
+                            <label>Number of daily deals</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>100</sort_order>
+                        </deal_count>
+                        
+                    </fields>
+                </general>
+            </groups>
+        </dailydeal>-->
         <catalog>
             <groups>
                 <dailydeal translate="label">

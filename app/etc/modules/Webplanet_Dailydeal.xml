@@ -5,6 +5,10 @@
         <Webplanet_Dailydeal>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <!-- Added this dependency to ensure it's loaded first -->
+                <Mage_Catalog />
+            </depends>
         </Webplanet_Dailydeal>
     </modules>
 </config>

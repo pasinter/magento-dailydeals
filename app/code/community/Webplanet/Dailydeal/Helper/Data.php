@@ -230,8 +230,6 @@ class Webplanet_Dailydeal_Helper_Data extends Mage_Core_Helper_Abstract
         /*
           $deal = Mage::getModel('dailydeal/deal')->loadByAttribute('product_id', $product->getEntityId());
 
-          var_dump($deal);exit;
-
           $collection
           ->addAttributeToFilter('product_id', $product->getEntityId())
           ////->addAttributeToSelect('*')
