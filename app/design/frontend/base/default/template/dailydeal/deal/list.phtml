@@ -11,13 +11,13 @@
 <div class="category-products">
 <?php $_collectionSize = $_dealCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
-    <?php $i=0; foreach ($_dealCollection as $_deal): ?>
+    <?php $i = 0; foreach ($_dealCollection as $_deal): ?>
     
     <?php $_helper->getCurrentDealForProduct($_deal->getProduct());  ?>
         <?php if($i++%$_columnCount==0): ?>
         <ul class="products-grid columns_<?php echo $_columnCount ?>">
         <?php endif; ?>
-           <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+           <li class="item<?php if(($i - 1) % $_columnCount === 0): ?> first<?php elseif($i % $_columnCount === 0): ?> last<?php endif; ?>">
                
                <div class="stock_remaining">
                    <strong>stock remaining:</strong>
@@ -30,9 +30,9 @@
                 <h4 class="product-name"><a href="<?php echo $_deal->getProduct()->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_deal->getProduct()->getName()) ?>"><?php echo $this->htmlEscape($_deal->getProduct()->getName()) ?></a></h4>
 
                 <ul class="prices">
-                    <li class="deal_price">Deal Price: <?php echo Mage::app()->getStore()->formatPrice($_deal->getDealPrice()) ?></li>
+                    <li class="deal_price"><?php echo $this->__('Deal Price:') ?> <?php echo Mage::app()->getStore()->formatPrice($_deal->getDealPrice()) ?></li>
                     <li class="regular_price">
-                        Regular Price: <span class="old-price"><?php echo Mage::app()->getStore()->formatPrice($_deal->getProduct()->getPrice()) ?></span>
+                        <?php echo $this->__('Regular Price:') ?> <span class="old-price"><?php echo Mage::app()->getStore()->formatPrice($_deal->getProduct()->getPrice()) ?></span>
                         <span class="savings">Save <?php echo Mage::app()->getStore()->formatPrice($_deal->getSavings()) ?>!</span>
                     </li>
                 </ul>

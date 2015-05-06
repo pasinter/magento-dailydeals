@@ -5,6 +5,17 @@ Magento Configuration
 -----------------------
 In System > Configuration > Developer > Template Settings > Allow Symlinks, change to "Yes"
 
+Display on Home Page
+-----------------
+Include the following code in Layout Update XML:
+```xml
+<reference name="content">
+    <block type="dailydeal/deals" name="deals" template="dailydeal/browse.phtml">
+        <block type="dailydeal/deal_list" name="deal_list" template="dailydeal/deal/list.phtml">
+        </block>
+    </block>
+</reference>
+```
 Deal fields
 -----------------
 `Deals expire at` - time when deals expire  

@@ -74,7 +74,7 @@ class Webplanet_Dailydeal_Block_Adminhtml_Deal_Grid extends Mage_Adminhtml_Block
         ));
 
         $this->addColumn('deal_qty', array(
-            'header' => Mage::helper('dailydeal')->__('Quanity'),
+            'header' => Mage::helper('dailydeal')->__('Quantity'),
             'align' => 'left',
             'index' => 'deal_qty',
         ));
