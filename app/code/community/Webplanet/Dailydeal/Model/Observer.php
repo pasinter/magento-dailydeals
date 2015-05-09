@@ -19,6 +19,25 @@ class Webplanet_Dailydeal_Model_Observer
 
         Mage::helper('dailydeal')->updateProductCollectionData($collection);
     }
+    
+    public function onAfterProductLoad(Varien_Event_Observer $event)
+    {
+        $product = $event->getProduct();
+        
+        $helper = Mage::helper('dailydeal');
+        $deal = $helper->getCurrentDealForProduct($product);
+        
+        if(!$deal) {
+            return;
+        }
+        
+//        $product->setCurrentDailydeal($deal);
+        $product->getResource()->getAttribute('special_price')->setStoreLabel(Mage::helper('core')->__('Deal Price:'));
+        $product->setSpecialPrice($deal->getDealPrice());
+//        var_dump($product->getResource()->getAttribute('special_price')->getStoreLabel());exit;
+        
+//        var_dump($deal, $event->getProduct());exit;
+    }
 
     /**
      *

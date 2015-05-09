@@ -92,6 +92,15 @@
         </routers>
 
         <events>
+            <catalog_product_load_after>
+                <observers>
+                    <MagentoDiary_FirstModule_Model_Observer>
+                        <class>Webplanet_Dailydeal_Model_Observer</class>
+                        <method>onAfterProductLoad</method>
+                   </MagentoDiary_FirstModule_Model_Observer>
+                </observers>
+            </catalog_product_load_after>
+            
             <catalog_product_collection_load_after>
                 <observers>
                     <weblanet_dailydeal>
