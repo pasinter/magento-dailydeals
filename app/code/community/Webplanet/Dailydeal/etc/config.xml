@@ -111,6 +111,27 @@
                 </observers>
             </catalog_product_collection_load_after>
             
+            <checkout_cart_product_add_after>
+                <observers>
+                    <weblanet_dailydeal>
+                        <type>model</type>
+                        <class>Webplanet_Dailydeal_Model_Observer</class>
+                        <method>onAfterCartProductAdd</method>
+                    </weblanet_dailydeal>
+                </observers>
+            </checkout_cart_product_add_after>
+            
+            <sales_quote_product_add_after>
+                <observers>
+                    <weblanet_dailydeal>
+                        <type>model</type>
+                        <class>Webplanet_Dailydeal_Model_Observer</class>
+                        <method>onAfterQuoteProductAdd</method>
+                    </weblanet_dailydeal>
+                </observers>
+            </sales_quote_product_add_after>
+            
+            
             <sales_quote_add_item>
                 <observers>
                     <weblanet_dailydeal>

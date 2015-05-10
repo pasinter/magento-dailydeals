@@ -31,22 +31,66 @@ class Webplanet_Dailydeal_Model_Observer
             return;
         }
         
-//        $product->setCurrentDailydeal($deal);
-        $product->getResource()->getAttribute('special_price')->setStoreLabel(Mage::helper('core')->__('Deal Price:'));
+        $product->setCurrentDailydeal($deal);
+//        $product->getResource()->getAttribute('special_price')->setStoreLabel(Mage::helper('core')->__('Deal Price:'));
         $product->setSpecialPrice($deal->getDealPrice());
 //        var_dump($product->getResource()->getAttribute('special_price')->getStoreLabel());exit;
         
 //        var_dump($deal, $event->getProduct());exit;
     }
 
+    public function onAfterCartProductAdd(\Varien_Event_Observer $event)
+    {
+        $quoteItem = $event->getData('quote_item');
+        /* @var $quoteItem Mage_Sales_Model_Quote_Item */
+//        var_dump($quoteItem);exit;
+        $helper = Mage::helper('dailydeal');
+        $deal = $helper->getCurrentDealForProduct($quoteItem->getProduct());
+
+        if (null === $deal) {
+            // no deal found for this product, ignore
+            return $this;
+        }
+        
+        $product = $event->getData('product');
+//        var_dump($product);exit;
+        $quoteItem->getProduct()->setIsSuperMode(true);
+        $quoteItem->getProduct()->setSpecialPrice($deal->getDealPrice());
+        $quoteItem->getProduct()->setFinalPrice($deal->getDealPrice());
+        $quoteItem->setSpecialPrice($deal->getDealPrice());
+        $quoteItem->setCustomPrice($deal->getDealPrice());   
+    }
+    
+    public function onAfterQuoteProductAdd(\Varien_Event_Observer $event)
+    {
+//        $quoteItem = $event->getData('quote_item');
+//        $product = $event->getData('product');
+//        /* @var $quoteItem Mage_Sales_Model_Quote_Item */
+////        var_dump($quoteItem);exit;
+//        $helper = Mage::helper('dailydeal');
+//        $deal = $helper->getCurrentDealForProduct($product);
+//
+//        if (null === $deal) {
+//            // no deal found for this product, ignore
+//            return $this;
+//        }
+//        
+//        
+////        var_dump($product);exit;
+//        $product->setIsSuperMode(true);
+//        $product->setSpecialPrice($deal->getDealPrice());
+//        $product->setFinalPrice($deal->getDealPrice());
+    }
+    
     /**
      *
      * @param Varien_Event_Observer $event
      */
-    public function onSalesQuoteAddItem($event)
+    public function onSalesQuoteAddItem(\Varien_Event_Observer $event)
     {
         $quoteItem = $event->getData('quote_item');
-
+        /* @var $quoteItem Mage_Sales_Model_Quote_Item */
+//        var_dump($quoteItem);exit;
         $helper = Mage::helper('dailydeal');
         $deal = $helper->getCurrentDealForProduct($quoteItem->getProduct());
 
@@ -70,8 +114,14 @@ class Webplanet_Dailydeal_Model_Observer
           $info_buyRequest->value = serialize($value);
          * 
          */
-        //var_dump($value);
-        //exit;
+//        var_dump($quoteItem);exit;
+        $quoteItem->getProduct()->setIsSuperMode(true);
+        $quoteItem->getProduct()->setSpecialPrice($deal->getDealPrice());
+        $quoteItem->getProduct()->setFinalPrice($deal->getDealPrice());
+        $quoteItem->setSpecialPrice($deal->getDealPrice());
+        $quoteItem->setCustomPrice($deal->getDealPrice());
+//        var_dump($quoteItem);exit;
+//        $quoteItem->set($value)
         // add a message to additional_options so it is displayed on the cart page
         $additionalOptions = $quoteItem->getOptionByCode('additional_options');
 
@@ -103,7 +153,7 @@ class Webplanet_Dailydeal_Model_Observer
         $dailyDealOptions->setCode(self::QUOTE_ITEM_OPTION_CODE);
         $dailyDealOptions->setValue(serialize(array('deal_date' => date('Y-m-d'), 'product_price' => $quoteItem->getProduct()->getPrice(), 'deal_price' => $quoteItem->getPrice())));
         $quoteItem->addOption($dailyDealOptions);
-
+        
         return;
 
         $dailyDealOption = new Mage_Sales_Model_Quote_Item_Option();
@@ -128,7 +178,6 @@ class Webplanet_Dailydeal_Model_Observer
 
     public function onSalesConvertQuoteItemToOrderItem(Varien_Event_Observer $observer)
     {
-
         try {
             // update deal_qty_sold 
             $helper = Mage::helper('dailydeal');
