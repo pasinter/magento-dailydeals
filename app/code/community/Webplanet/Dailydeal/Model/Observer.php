@@ -41,24 +41,26 @@ class Webplanet_Dailydeal_Model_Observer
 
     public function onAfterCartProductAdd(\Varien_Event_Observer $event)
     {
-        $quoteItem = $event->getData('quote_item');
-        /* @var $quoteItem Mage_Sales_Model_Quote_Item */
-//        var_dump($quoteItem);exit;
-        $helper = Mage::helper('dailydeal');
-        $deal = $helper->getCurrentDealForProduct($quoteItem->getProduct());
-
-        if (null === $deal) {
-            // no deal found for this product, ignore
-            return $this;
-        }
-        
-        $product = $event->getData('product');
-//        var_dump($product);exit;
-        $quoteItem->getProduct()->setIsSuperMode(true);
-        $quoteItem->getProduct()->setSpecialPrice($deal->getDealPrice());
-        $quoteItem->getProduct()->setFinalPrice($deal->getDealPrice());
-        $quoteItem->setSpecialPrice($deal->getDealPrice());
-        $quoteItem->setCustomPrice($deal->getDealPrice());   
+//        $quoteItem = $event->getData('quote_item');
+//        /* @var $quoteItem Mage_Sales_Model_Quote_Item */
+////        var_dump($quoteItem);exit;
+//        $helper = Mage::helper('dailydeal');
+//        $deal = $helper->getCurrentDealForProduct($quoteItem->getProduct());
+//
+//        if (null === $deal) {
+//            // no deal found for this product, ignore
+//            return $this;
+//        }
+//        
+//        $product = $event->getData('product');
+////        var_dump($product);exit;
+//        $product->setIsSuperMode(true);
+//        $product->setSpecialPrice($deal->getDealPrice());
+//        $quoteItem->getProduct()->setFinalPrice($deal->getDealPrice());
+//        $quoteItem->setSpecialPrice($deal->getDealPrice());
+//        $quoteItem->setCustomPrice($deal->getDealPrice());
+//        
+//        $quoteItem->save();
     }
     
     public function onAfterQuoteProductAdd(\Varien_Event_Observer $event)
@@ -120,6 +122,8 @@ class Webplanet_Dailydeal_Model_Observer
         $quoteItem->getProduct()->setFinalPrice($deal->getDealPrice());
         $quoteItem->setSpecialPrice($deal->getDealPrice());
         $quoteItem->setCustomPrice($deal->getDealPrice());
+        $quoteItem->setOriginalCustomPrice($deal->getDealPrice());
+        
 //        var_dump($quoteItem);exit;
 //        $quoteItem->set($value)
         // add a message to additional_options so it is displayed on the cart page

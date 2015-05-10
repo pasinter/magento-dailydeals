@@ -111,7 +111,7 @@
                 </observers>
             </catalog_product_collection_load_after>
             
-            <checkout_cart_product_add_after>
+<!--            <checkout_cart_product_add_after>
                 <observers>
                     <weblanet_dailydeal>
                         <type>model</type>
@@ -129,7 +129,7 @@
                         <method>onAfterQuoteProductAdd</method>
                     </weblanet_dailydeal>
                 </observers>
-            </sales_quote_product_add_after>
+            </sales_quote_product_add_after>-->
             
             
             <sales_quote_add_item>
