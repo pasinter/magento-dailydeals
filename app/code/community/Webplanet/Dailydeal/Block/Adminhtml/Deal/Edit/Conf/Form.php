@@ -12,7 +12,7 @@
  *
  * @category    Webplanet
  * @package     Webplanet_Dailydeal
- * @author      Ken Golovin <ken@webplanet.co.nz>
+ * @author      pasinter
  */
 class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Conf_Form extends Mage_Adminhtml_Block_Widget_Form
 {
@@ -147,10 +147,7 @@ class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Conf_Form extends Mage_Admin
         $fieldset->addField('start_date', 'date', $params);
 
 
-
-
-
-        /*         * ********************************************************* */
+        /********************************************************** */
 
         $fieldset->addField('status', 'select', array(
             'label' => Mage::helper('dailydeal')->__('Status'),

@@ -2,7 +2,7 @@
 /**
  * 
  *
- * @author      Ken Golovin <ken@webplanet.co.nz>
+ * @author      pasinter
  */
 
 

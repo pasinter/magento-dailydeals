@@ -13,7 +13,7 @@
  *
  * @category    Webplanet
  * @package     Webplanet_Dailydeal
- * @author      Ken Golovin <ken@webplanet.co.nz>
+ * @author      pasinter
  */
 class Webplanet_Dailydeal_Block_Catalog_Product_List extends Mage_Catalog_Block_Product_Abstract
 {

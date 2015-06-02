@@ -12,7 +12,7 @@
  *
  * @category    Webplanet
  * @package     Webplanet_Dailydeal
- * @author      Ken Golovin <ken@webplanet.co.nz>
+ * @author      pasinter
  */
 class Webplanet_Dailydeal_Block_Adminhtml_Deal_Edit_Product_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {

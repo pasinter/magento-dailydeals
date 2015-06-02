@@ -1,19 +1,11 @@
 <?php
 
 /**
- * Webplanet
- *
- * @category    Webplanet
- * @package     Webplanet_Dailydeal
- * @author      Ken Golovin <ken@webplanet.co.nz>
- */
-
-/**
  * Deals Controller
  *
  * @category    Webplanet
  * @package     Webplanet_Dailydeal
- * @author      Ken Golovin <ken@webplanet.co.nz>
+ * @author      pasinter
  */
 class Webplanet_Dailydeal_IndexController extends Mage_Core_Controller_Front_Action
 {

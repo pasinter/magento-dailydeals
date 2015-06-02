@@ -38,10 +38,10 @@
                 </ul>
                 
                 <div class="actions">
-                    <?php if($_deal->getProduct()->isSaleable()): ?>
+                    <?php if($_deal->getProduct()->isSaleable() && $_deal->isAvailable()): ?>
                         <button type="button btn-cart" title="<?php echo $this->__('Buy Now') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_deal) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
                     <?php else: ?>
-                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Ran out!') ?></span></p>
                     <?php endif; ?>
                 </div>
             </li>

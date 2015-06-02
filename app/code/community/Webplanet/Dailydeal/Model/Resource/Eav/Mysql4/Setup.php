@@ -3,7 +3,7 @@
 /**
  * 
  *
- * @author      Ken Golovin <ken@webplanet.co.nz>
+ * @author      pasinter
  */
 class Webplanet_Dailydeal_Model_Resource_Eav_Mysql4_Setup extends Mage_Eav_Model_Entity_Setup
 {

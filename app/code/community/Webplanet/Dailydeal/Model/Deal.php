@@ -19,10 +19,11 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
 
     protected function _CalcProductPrice($price, $percent, $type)
     {
-        if ($type)
+        if ($type) {
             return $price * (1 + ($percent / 100));
-        else
-            return $price - ($price / (100 + $percent) * $percent);
+        }
+        
+        return $price - ($price / (100 + $percent) * $percent);
     }
 
     /*     * ***********************************************************************
@@ -70,17 +71,17 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
 
     public function isScheduled()
     {
-        return $this->getStatus() === $this::STATUS_SCHEDULED;
+        return $this->getStatus() === self::STATUS_SCHEDULED;
     }
 
     public function isRunning()
     {
-        return $this->getStatus() === $this::STATUS_RUNNING;
+        return $this->getStatus() === self::STATUS_RUNNING;
     }
 
     public function isEnded()
     {
-        return $this->getStatus() === $this::STATUS_ENDED;
+        return $this->getStatus() === self::STATUS_ENDED;
     }
 
     public function isLocked()
@@ -325,6 +326,24 @@ class Webplanet_Dailydeal_Model_Deal extends Mage_Core_Model_Abstract
         // get sold items qty
 
         return $percentage;
+    }
+    
+    /**
+     * 
+     * @return int
+     */
+    public function getRemainingQty()
+    {
+        return $this->getDealQty() - $this->getDealQtySold();
+    }
+    
+    /**
+     * 
+     * @return bool
+     */
+    public function isAvailable()
+    {
+        return $this->getRemainingQty() > 0;
     }
 
 }

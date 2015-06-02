@@ -13,7 +13,7 @@
  *
  * @category    Webplanet
  * @package     Webplanet_Dailydeal
- * @author      Ken Golovin <ken@webplanet.co.nz>
+ * @author      pasinter
  */
 class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
 {
@@ -26,7 +26,6 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
      */
     protected function _prepareLayout()
     {
-//        echo 'Webplanet_Dailydeal_Block_Deal_List::_prepareLayout';
         return parent::_prepareLayout();
     }
     
@@ -37,7 +36,6 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
      */
     protected function getDealCollection()
     {
-//        echo 'Webplanet_Dailydeal_Block_Deal_List::getDealCollection';
         $storeId = Mage::app()->getStore()->getStoreId();
         $this->setStoreId($storeId);
 
@@ -52,7 +50,6 @@ class Webplanet_Dailydeal_Block_Deal_List extends Mage_Core_Block_Template
                     //->addFieldToFilter('deal_start', array('eq' => $date))
                     ->addDealDateFilter($date)
                     ->setPageSize(3)
-
             ;
             //echo $this->_dealsCollection->getSelectSql();
             //exit;
