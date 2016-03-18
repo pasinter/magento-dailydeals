@@ -30,3 +30,5 @@ Daily Deals Admin
 * To caeate a deal, click "Add Daily Deal"
 * In the Product Selection grid, select the product for the deal. Use name, sku, price etc filters to look for the products and press Search. Click on the product to select it
 * Once product is selected, modify the Deal Settings as required. 
+
+>>>>>>>>> Get <a href="http://magehit.com/magento-daily-deal-extension.html">Daily deal extension for Magento</a>
